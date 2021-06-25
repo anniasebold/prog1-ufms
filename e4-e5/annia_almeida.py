@@ -3,22 +3,17 @@ def Caso1(n, M):
   
   meio = n // 2
   M[0][meio] = 1
-
-  direita = 1
-  cima = 0
-  aux_direita = 1
-  aux_cima = 0
   numero = 1
+
+  cima = n-1
+  direita = meio+1
+  aux_direita = direita
+  aux_cima = cima
 
   for i in range(1, n**2):
     numero += 1
     if i == 1:
-      cima = n-1
-      direita = meio+1
       M[cima][direita] = numero
-
-      aux_cima = cima
-      aux_direita = direita
     else:
       direita += 1
       cima -= 1
@@ -37,19 +32,30 @@ def Caso1(n, M):
       else:
         cima = aux_cima + 1
         direita = aux_direita
-        M[cima][direita] = numero
-    
-  
+        M[cima][direita] = numero 
 # =========================================
 
 def Caso2(n, M):
   print("Caso 2:")
 
-  # <CODIGO>
-  print("entrou caso 2")
+  entra = True
+  numero = 1
+  for i in range(n):
+    for j in range(n):
+      M[i][j] = numero
+      numero +=1
 
-	# </CODIGO>
+  def aplicaFormula(M, n):
+    M[i][j] = (n**2+1) - M[i][j]
 
+  for i in range(n):
+    for j in range(n):
+      if entra or j == 5:
+        aplicaFormula(M, n)
+        entra = False
+        j += 2
+      else: 
+        entra = True
 
 # =========================================
 
@@ -58,11 +64,10 @@ def Caso3(n, M):
   print("Caso 3:")
 
   # <CODIGO>
-  print("entrou caso 3")
 
-	# </CODIGO>
-	
-			
+  # </CODIGO>
+
+    
 # =========================================
 
 
