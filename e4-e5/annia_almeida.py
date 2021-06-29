@@ -3,62 +3,86 @@ def Caso1(n, M):
   
   meio = n // 2
   M[0][meio] = 1
-  numero = 1
+  numero = 2
 
   cima = n-1
   direita = meio+1
   aux_direita = direita
   aux_cima = cima
+  M[cima][direita] = numero
 
-  for i in range(1, n**2):
+  for i in range(2, n**2):
     numero += 1
-    if i == 1:
+    direita += 1
+    cima -= 1
+
+    if cima < 0:
+      cima = n-1
+    
+    if direita >= n:
+      direita = 0
+
+    if M[cima][direita] == 0:
       M[cima][direita] = numero
+      aux_cima = cima
+      aux_direita = direita
+    
     else:
-      direita += 1
-      cima -= 1
-
-      if cima < 0:
-        cima = n-1
-      
-      if direita >= n:
-        direita = 0
-
-      if M[cima][direita] == 0:
-        M[cima][direita] = numero
-        aux_cima = cima
-        aux_direita = direita
-      
-      else:
-        cima = aux_cima + 1
-        direita = aux_direita
-        M[cima][direita] = numero 
+      cima = aux_cima + 1
+      direita = aux_direita
+      M[cima][direita] = numero 
 # =========================================
 
 def Caso2(n, M):
   print("Caso 2:")
 
-  entra = True
   numero = 1
   for i in range(n):
     for j in range(n):
       M[i][j] = numero
-      numero +=1
+      numero += 1
+
+  # v_linha = 0
+  # v_coluna = 0
 
   def aplicaFormula(M, n):
-    M[i][j] = (n**2+1) - M[i][j]
-
+    M[i][j] = ((n**2)+1) - M[i][j]
+  
   for i in range(n):
     for j in range(n):
-      if entra or j == 5:
-        aplicaFormula(M, n)
-        entra = False
-        j += 2
-      else: 
-        entra = True
+      
+      if i == 0 or i == 3:
+        if j == 0 or j == 3:
+          aplicaFormula(M, n)
+        
+      if i == 1 or i == 2:
+        if j == 1 or j == 2:
+          aplicaFormula(M, n)
+
+      # if i == j:
+      #   aplicaFormula(M, n)
+      # elif i + j == n-1:
+      #   aplicaFormula(M, n)
+  
+  # for i in range(n):
+  #   for j in range(n):
+      
+  #     if v_coluna > 3:
+  #       v_coluna = 0
+      
+  #     if v_linha > 3:
+  #       v_linha = 0
+    
+  #     if (v_linha == 0 or v_linha == 3) and (v_coluna == 0 or v_coluna == 3):
+  #       aplicaFormula(M, n)
+      
+  #     if (v_linha == 1 or v_linha == 2) and (v_coluna == 1 or v_coluna == 2):
+  #       aplicaFormula(M, n)
+      
+  #     v_coluna += 1
+  #   v_linha += 1
 
 # =========================================
-
 
 def Caso3(n, M):
   print("Caso 3:")
