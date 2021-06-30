@@ -42,45 +42,17 @@ def Caso2(n, M):
       M[i][j] = numero
       numero += 1
 
-  # v_linha = 0
-  # v_coluna = 0
+  while i >= 0:
+    i_sec = i
+    j_sec = j-3
+    for quad in range(4):
+      M[i-quad][j-quad] = (n**2+1) - M[i-quad][j-quad]
+      M[i_sec-quad][j_sec+quad] = (n**2+1) - M[i_sec-quad][j_sec+quad]
+    j -= 4
+    if j < 0:
+      i -= 4
+      j = n-1
 
-  def aplicaFormula(M, n):
-    M[i][j] = ((n**2)+1) - M[i][j]
-  
-  for i in range(n):
-    for j in range(n):
-      
-      if i == 0 or i == 3:
-        if j == 0 or j == 3:
-          aplicaFormula(M, n)
-        
-      if i == 1 or i == 2:
-        if j == 1 or j == 2:
-          aplicaFormula(M, n)
-
-      # if i == j:
-      #   aplicaFormula(M, n)
-      # elif i + j == n-1:
-      #   aplicaFormula(M, n)
-  
-  # for i in range(n):
-  #   for j in range(n):
-      
-  #     if v_coluna > 3:
-  #       v_coluna = 0
-      
-  #     if v_linha > 3:
-  #       v_linha = 0
-    
-  #     if (v_linha == 0 or v_linha == 3) and (v_coluna == 0 or v_coluna == 3):
-  #       aplicaFormula(M, n)
-      
-  #     if (v_linha == 1 or v_linha == 2) and (v_coluna == 1 or v_coluna == 2):
-  #       aplicaFormula(M, n)
-      
-  #     v_coluna += 1
-  #   v_linha += 1
 
 # =========================================
 
