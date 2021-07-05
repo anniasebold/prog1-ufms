@@ -41,17 +41,16 @@ def Caso2(n, M):
     for j in range(n):
       M[i][j] = numero
       numero += 1
-
-  while i >= 0:
-    i_sec = i
-    j_sec = j-3
-    for quad in range(4):
-      M[i-quad][j-quad] = (n**2+1) - M[i-quad][j-quad]
-      M[i_sec-quad][j_sec+quad] = (n**2+1) - M[i_sec-quad][j_sec+quad]
-    j -= 4
-    if j < 0:
-      i -= 4
-      j = n-1
+  
+  def aplicaFormula(M, n):
+    M[i][j] = (n**2+1) - M[i][j]
+  
+  for i in range(n):
+    for j in range(n):
+      if i == j:
+        aplicaFormula(M, n)
+      elif i + j == n -1:
+        aplicaFormula(M, n)
 
 
 # =========================================
